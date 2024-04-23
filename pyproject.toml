@@ -1,0 +1,11 @@
+[project]
+name = "arkcomputing-site"
+description = "Ark Computing Website"
+requires-python = ">3.10"
+dynamic = ["version"]
+readme = { file = "README.md", content-type = "text/markdown" }
+
+authors = [
+    { name = "Blake Nall", email = "dev@darthnall.com" },
+    { name = "Constantine Kapatos", email = "koskap@gmail.com" },
+]
