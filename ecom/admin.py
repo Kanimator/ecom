@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import ArkComputingBuild, ArkComputingPart
+
+admin.site.register(ArkComputingPart)
+admin.site.register(ArkComputingBuild)
