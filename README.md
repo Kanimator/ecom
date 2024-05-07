@@ -4,6 +4,7 @@
 ```bash
 git clone https://github.com/darthnall/arkcomputing-site
 cd arkcomputing-site/
+python -m venv .venv
 ```
 
 ## Run local server
