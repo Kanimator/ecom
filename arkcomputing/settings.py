@@ -80,11 +80,15 @@ WSGI_APPLICATION = 'arkcomputing.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'arkcomputing': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test-db',
-        'USER': 'blake',
+        'NAME': 'arkcomputing',
+        'USER': 'arkcomputing',
         'PASSWORD': os.environ.get("DB_PASS"),
-    }
+    },
 }
 
 
