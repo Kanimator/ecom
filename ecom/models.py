@@ -40,6 +40,18 @@ class ArkComputingPart(models.Model):
     def __str__(self):
         return self.name
 
+class ArkComputingUser(models.Model):
+    email = models.EmailField(max_length=256, unique=True, null=False)
+    first_name = models.CharField(max_length=24, unique=False, null=True, blank=True)
+    last_name = models.CharField(max_length=24, unique=False, null=True, blank=True)
+    hashed_password = models.CharField(max_length=256, unique=False, null=False)
+
+class ArkComputingCustomBuild(models.Model):
+    name = models.CharField(max_length=256, unique=True)
+    upload_date = models.DateTimeField("upload date", default=datetime.now)
+    parts_list = models.ManyToManyField("ArkComputingPart")
+    user = models.ForeignKey("ArkComputingUser", on_delete=models.CASCADE)
+
 class ArkComputingBuild(models.Model):
     class Type(models.TextChoices):
         AIS = "AIS", _("Always in stock")
