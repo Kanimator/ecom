@@ -2,5 +2,8 @@
 {% block content %}
 <section>
     <div class="text-3xl text-center text-sky-400">Welcome to our store!</div>
+    {% for build in latest_builds_list %}
+        {{ build }}
+    {% endfor %}
 </section>
 {% endblock content %}
