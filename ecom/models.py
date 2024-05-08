@@ -22,7 +22,8 @@ class ArkComputingPart(models.Model):
     name = models.CharField(max_length=256, unique=False)
     image = models.ImageField(upload_to="media/product")
     upload_date = models.DateTimeField("upload date", default=datetime.now())
-    cost = models.DecimalField(max_digits=7, decimal_places=2)
+    cost = models.DecimalField(max_digits=7, decimal_places=2, default=9999.99)
+    price = models.DecimalField(max_digits=7, decimal_places=2, default=9999.99)
     location = models.CharField(
         max_length=3,
         choices=ArkComputingPartLocation,

@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
+from ecom.models import ArkComputingPart, ArkComputingBuild
+
 def home(request):
-    latest_product_list = Product.objects.order_by("-upload_date")[:5]
-    context = { "title": "Home", "latest_product_list": latest_product_list }
+    latest_builds_list = ArkComputingBuild.objects.order_by("-upload_date")[:5]
+    context = { "title": "Home", "latest_builds_list": latest_builds_list }
     return render(request, "ecom/home.html", context=context)
 
 def cart(request):
