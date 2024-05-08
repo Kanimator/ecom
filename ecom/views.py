@@ -3,6 +3,19 @@ from django.shortcuts import get_object_or_404
 
 from ecom.models import ArkComputingPart, ArkComputingBuild
 
+class ArkComputingCustomBuild:
+    def get(request, custom_build_id):
+        build = ArkComputingCustomBuild.objects.get(custom_build_id)
+        context = { "title": custom_build_id, "build": build }
+
+    def create(request, custom_build_data):
+        context = { "title": "New Custom Build", "custom_build_data": custom_build_data }
+        return render(request, "ecom/custom.html", context=context)
+
+    def delete(request, custom_build_id):
+        context = { "title": f"Delete Build #{custom_build_id}", "custom_build": custom_build_id }
+        return render(request, "ecom/delete_custom.html", context=context)
+
 def home(request):
     latest_builds_list = ArkComputingBuild.objects.order_by("-upload_date")[:5]
     context = { "title": "Home", "latest_builds_list": latest_builds_list }
