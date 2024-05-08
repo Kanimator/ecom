@@ -3,11 +3,11 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class ArkComputingPart(models.Model):
-    class ArkComputingPartLocation(models.TextChoices):
+    class Location(models.TextChoices):
         OFFICE = "OFF", _("Ark Computing Main Office")
         STORAGE = "STO", _("Ark Computing Self-Storage")
 
-    class ArkComputingPartCategory(models.TextChoices):
+    class Category(models.TextChoices):
         CENTRAL_PROCESSOR = "CPU", _("CPU")
         CPU_COOLER = "CPC", _("Cpu Cooler")
         MOTHERBOARD = "MOB", _("Motherboard")
@@ -27,21 +27,21 @@ class ArkComputingPart(models.Model):
 
     location = models.CharField(
         max_length=3,
-        choices=ArkComputingPartLocation,
-        default=ArkComputingPartLocation.OFFICE,
+        choices=Location,
+        default=Location.OFFICE,
     )
 
     category = models.CharField(
         max_length=3,
-        choices=ArkComputingPartCategory,
-        default=ArkComputingPartCategory.CENTRAL_PROCESSOR,
+        choices=Category,
+        default=Category.CENTRAL_PROCESSOR,
     )
 
     def __str__(self):
         return self.name
 
 class ArkComputingBuild(models.Model):
-    class ArkComputingBuildType(models.TextChoices):
+    class Type(models.TextChoices):
         AIS = "AIS", _("Always in stock")
         RTS = "RTS", _("Ready to ship")
 
@@ -49,8 +49,8 @@ class ArkComputingBuild(models.Model):
     upload_date = models.DateTimeField("upload date", default=datetime.now)
     build_type = models.CharField(
         max_length=3,
-        choices=ArkComputingBuildType,
-        default=ArkComputingBuildType.RTS,
+        choices=Type,
+        default=Type.RTS,
     )
 
     def __str__(self):
