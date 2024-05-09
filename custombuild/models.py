@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
+
 class CustomPart(models.Model):
     class CustomPartCategory(models.TextChoices):
         CENTRAL_PROCESSOR = "CPU", _("CPU")

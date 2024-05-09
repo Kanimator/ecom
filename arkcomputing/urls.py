@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include("ecom.urls")),
     path('d/', include("discord.urls")),
+    path('custom/', include("custombuild.urls"))
 ]
