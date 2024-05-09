@@ -2,12 +2,12 @@ from datetime import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class ArkComputingPart(models.Model):
-    class Location(models.TextChoices):
-        OFFICE = "OFF", _("Ark Computing Main Office")
-        STORAGE = "STO", _("Ark Computing Self-Storage")
+class ClientPart(models.Model):
+    class ClientPartLocation(models.TextChoices):
+        OFFICE = "OFF", _("Main Office")
+        STORAGE = "STO", _("Self-Storage")
 
-    class Category(models.TextChoices):
+    class ClientPartCategory(models.TextChoices):
         CENTRAL_PROCESSOR = "CPU", _("CPU")
         CPU_COOLER = "CPC", _("Cpu Cooler")
         MOTHERBOARD = "MOB", _("Motherboard")
@@ -23,37 +23,25 @@ class ArkComputingPart(models.Model):
     upload_date = models.DateTimeField("upload date", default=datetime.now)
     cost = models.DecimalField(max_digits=7, decimal_places=2, default=9999.99)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=9999.99)
-    build = models.ManyToManyField("ArkComputingBuild")
+    build = models.ManyToManyField("ClientBuild")
 
     location = models.CharField(
         max_length=3,
-        choices=Location,
-        default=Location.OFFICE,
+        choices=ClientPartLocation,
+        default=ClientPartLocation.OFFICE,
     )
 
     category = models.CharField(
         max_length=3,
-        choices=Category,
-        default=Category.CENTRAL_PROCESSOR,
+        choices=ClientPartCategory,
+        default=ClientPartCategory.CENTRAL_PROCESSOR,
     )
 
     def __str__(self):
         return self.name
 
-class ArkComputingUser(models.Model):
-    email = models.EmailField(max_length=256, unique=True, null=False)
-    first_name = models.CharField(max_length=24, unique=False, null=True, blank=True)
-    last_name = models.CharField(max_length=24, unique=False, null=True, blank=True)
-    hashed_password = models.CharField(max_length=256, unique=False, null=False)
-
-class ArkComputingCustomBuild(models.Model):
-    name = models.CharField(max_length=256, unique=True)
-    upload_date = models.DateTimeField("upload date", default=datetime.now)
-    parts_list = models.ManyToManyField("ArkComputingPart")
-    user = models.ForeignKey("ArkComputingUser", on_delete=models.CASCADE)
-
-class ArkComputingBuild(models.Model):
-    class Type(models.TextChoices):
+class ClientBuild(models.Model):
+    class ClientBuildType(models.TextChoices):
         AIS = "AIS", _("Always in stock")
         RTS = "RTS", _("Ready to ship")
 
@@ -61,8 +49,8 @@ class ArkComputingBuild(models.Model):
     upload_date = models.DateTimeField("upload date", default=datetime.now)
     build_type = models.CharField(
         max_length=3,
-        choices=Type,
-        default=Type.RTS,
+        choices=ClientBuildType,
+        default=ClientBuildType.RTS,
     )
 
     def __str__(self):

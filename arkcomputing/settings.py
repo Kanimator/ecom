@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ecom.apps.EcomConfig',
+    'custombuild.apps.CustombuildConfig',
     'discord.apps.DiscordConfig',
     'django.contrib.admin',
     'django.contrib.auth',
