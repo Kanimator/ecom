@@ -3,7 +3,7 @@
 <section>
     <div class="text-3xl text-center text-sky-400">Welcome to our store!</div>
     {% for build in latest_builds_list %}
-    <a href="/{{ build.slug }}" class="group block overflow-hidden">
+    <a href="/shop/{{ build.slug }}" class="group block overflow-hidden">
           <div class="relative h-[350px] sm:h-[450px]">
             <img
                 src="{{ build.image.url }}"
