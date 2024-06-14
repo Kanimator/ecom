@@ -18,6 +18,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATICFILES_DIRS = [BASE_DIR / "global_static"]
 
+CLIENT = {
+    "NAME": "Ark Computing",
+    "TITLE": "Ark Computing, LLC.",
+    "ADDRESS": {
+        "STREET": "",
+        "CITY": "Cypress",
+        "STATE": "TX",
+        "ZIP": 77429,
+    },
+    "PHONE": {
+        "MAIN": "",
+        "OTHER": "",
+    },
+    "EMAIL": {
+        "MAIN": "support@arkcomputing.tech",
+        "SUPPORT": "support@arkcomputing.tech",
+        "SALES": "sales@arkcomputing.tech",
+        "NOREPLY": "no-reply@arkcomputing.tech",
+    },
+    "SOCIAL": {
+        "FACEBOOK": "",
+        "INSTAGRAM": "https://www.instagram.com/arkcomputing",
+        "X": "",
+        "TIKTOK": "https://www.tiktok.com/@arkcomputing",
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -29,16 +55,6 @@ SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-CLIENT = {
-    "NAME": "Ark Computing",
-    "SOCIALS": {
-        "FACEBOOK": "",
-        "DISCORD": "",
-        "X": "",
-        "GITHUB": "",
-    },
-}
 
 # Application definition
 
@@ -91,11 +107,13 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     },
-    "arkcomputing": {
+    "postgresql": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "arkcomputing",
-        "USER": "arkcomputing",
-        "PASSWORD": os.environ.get("DB_PASS"),
+        "NAME": os.environ.get("PSQL_NAME", "postgres"),
+        "USER": os.environ.get("PSQL_USER", "postgres"),
+        "PASSWORD": os.environ.get("PSQL_PASS", ""),
+        "HOST": os.environ.get("PSQL_HOST", "0.0.0.0"),
+        "PORT": os.environ.get("PSQL_PORT", "5432"),
     },
 }
 
