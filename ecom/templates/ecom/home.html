@@ -1,28 +1,8 @@
 {% extends "ecom/base.html" %}
 {% block content %}
 <section>
-    <div class="text-3xl text-center text-sky-400">Welcome to our store!</div>
-    {% for build in latest_builds_list %}
-    <a href="/shop/{{ build.slug }}" class="group block overflow-hidden">
-          <div class="relative h-[350px] sm:h-[450px]">
-            <img
-                src="{{ build.image.url }}"
-                alt=""
-              class="absolute inset-0 h-full w-full object-cover opacity-100 group-hover:opacity-0"
-            />
-            <img
-                src="{{ build.alt_image.url }}"
-                alt=""
-              class="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100"
-            />
-          </div>
-          <div class="relative bg-white pt-3">
-            <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                {{ build.name }}
-            </h3>
-            <p class="mt-1.5 tracking-wide text-gray-900">${{ build.price }}</p>
-          </div>
-        </a>
-    {% endfor %}
+    <div class="text-3xl text-gray-500">{{ product.name }}</div>
+    <div class="text-2xl text-gray-500">{{ product.category.name }}</div>
+    <div class="text-xl text-gray-500">{{ product.price }}</div>
 </section>
 {% endblock content %}

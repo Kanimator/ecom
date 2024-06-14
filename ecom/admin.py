@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from ecom.models import Build, Part
+from ecom.models import Cart, Category, Order, Product
 
-admin.site.register(Build)
-admin.site.register(Part)
+admin.site.register(Product)
+admin.site.register(Category)
+admin.site.register(Cart)
+admin.site.register(Order)
