@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
 AWS_BUCKET_NAME = "arkcomputing-bucket"
-ECOM_ENCRYPTION_KEY = os.environ.get("ENCRYPTION_KEY", "")
+ECOM_ENCRYPTION_KEY = os.environ.get("ECOM_ENCRYPTION_KEY", "")
 
 CLIENT = {
     "NAME": "Ark Computing",
