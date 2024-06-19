@@ -13,11 +13,11 @@ class TokenBaseModel(models.Model):
     expiry_date = models.DateTimeField(null=True, blank=True, default=None)
 
     def _decrypt_token(self, token: str) -> str:
-        f = Fernet(settings.AUTH.get("ENCRYPTION_KEY", ""))
+        f = Fernet(settings.ECOM_ENCRYPTION_KEY)
         return f.decrypt(token.encode()).decode()
 
     def _encrypt_token(self, token: str) -> str:
-        f = Fernet(settings.AUTH.get("ENCRYPTION_KEY", ""))
+        f = Fernet(settings.ECOM_ENCRYPTION_KEY)
         return f.encrypt(token.encode()).decode()
 
     @property
@@ -39,3 +39,7 @@ class TokenBaseModel(models.Model):
     @refresh_token.setter
     def refresh_token(self, value: str) -> None:
         self._refresh_token = self._encrypt_token(value)
+
+
+class SquareToken(TokenBaseModel):
+    company_id = models.CharField(max_length=128)

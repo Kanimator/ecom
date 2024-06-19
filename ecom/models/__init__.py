@@ -1,2 +1,2 @@
-from .auth import SquareToken
+from .auth.token import SquareToken
 from .product import Product
