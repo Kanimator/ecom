@@ -15,10 +15,26 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
-AWS_BUCKET_NAME = "arkcomputing-bucket"
 ECOM_ENCRYPTION_KEY = os.environ.get("ECOM_ENCRYPTION_KEY", "")
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "bucket": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "bucket_name": "arkcomputing-bucket",
+            "access_key": os.environ.get("AWS_ACCESS_KEY_ID", ""),
+            "default_acl": "private",
+            "location": "media/",
+            "verify": False,
+        },
+    },
+}
 
 CLIENT = {
     "NAME": "Ark Computing",
