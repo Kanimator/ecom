@@ -1,8 +1,8 @@
-# Ark Computing Django Site
+# Ecommerce app by crimsonslate
 
 ## Install
 ```bash
-git clone https://github.com/darthnall/arkcomputing-site
-cd arkcomputing-site/
-source ./install.sh # Uses `/usr/bin/bash`
+git clone https://github.com/crimsonslate/ecom.git
+cd ecom/
+source ./install.sh # Untested :(
 ```
