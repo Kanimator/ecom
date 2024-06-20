@@ -27,7 +27,7 @@ STORAGES = {
     "bucket": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
-            "bucket_name": "arkcomputing-bucket",
+            "bucket_name": "ecom-dev-bucket",
             "access_key": os.environ.get("AWS_ACCESS_KEY_ID", ""),
             "default_acl": "private",
             "location": "media/",
