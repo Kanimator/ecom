@@ -50,7 +50,6 @@ class CartModelTests(TestCase):
         )
         test_product_1 = Product.objects.create(name="test_product_1", price=1.00)
         test_product_2 = Product.objects.create(name="test_product_2", price=2.00)
-
         test_cart = Cart.objects.create(user=test_user)
 
         test_cart.add_product(product_id=test_product_1.id, quantity=1)
