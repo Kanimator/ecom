@@ -3,6 +3,8 @@ from django.db import models
 
 
 class Product(models.Model):
+    """A purchasable item in the store."""
+
     name = models.CharField(max_length=64)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=420.69)
 
@@ -11,6 +13,8 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
+    """Image for a Product."""
+
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
@@ -25,6 +29,8 @@ class ProductImage(models.Model):
 
 
 class ProductVideo(models.Model):
+    """Video for a Product."""
+
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
