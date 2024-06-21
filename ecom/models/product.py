@@ -5,8 +5,6 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=64)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=420.69)
-    images = models.ManyToManyField("ProductImage")
-    videos = models.ManyToManyField("ProductVideo")
 
     def __str__(self) -> str:
         return self.name
@@ -15,9 +13,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
-    product = models.ForeignKey(
-        "Product", related_name="images", on_delete=models.CASCADE
-    )
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
     source = models.FileField(storage=storages["bucket"])
 
     @property
@@ -31,9 +27,7 @@ class ProductImage(models.Model):
 class ProductVideo(models.Model):
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
-    product = models.ForeignKey(
-        "Product", related_name="videos", on_delete=models.CASCADE
-    )
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
     source = models.FileField(storage=storages["bucket"])
 
     @property
