@@ -22,6 +22,7 @@ class TokenBaseModel(models.Model):
 
     @property
     def access_token(self) -> str:
+        """A decrypted access token."""
         if not self._access_token:
             raise ValueError("Access token is unset.")
         return self._decrypt_token(self._access_token)
@@ -32,6 +33,7 @@ class TokenBaseModel(models.Model):
 
     @property
     def refresh_token(self) -> str:
+        """A decrypted refresh token."""
         if not self._refresh_token:
             raise ValueError("Refresh token is unset.")
         return self._decrypt_token(self._refresh_token)
