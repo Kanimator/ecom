@@ -72,6 +72,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "ecom.apps.EcomConfig",
     "django.contrib.admin",
+    "django.contrib.admindocs",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -91,6 +92,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.admindocs.middleware.XViewMiddleware",
 ]
 
 ROOT_URLCONF = "src.urls"
