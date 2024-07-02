@@ -1,11 +1,11 @@
-import os
+from os import environ as env
 from pathlib import Path
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-ECOM_ENCRYPTION_KEY = os.environ.get("ECOM_ENCRYPTION_KEY", "")
+ECOM_ENCRYPTION_KEY = env.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
 MEDIA_URL = "media/"
@@ -39,11 +39,11 @@ DATABASES = {
     },
     "postgresql": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("PSQL_NAME", "postgres"),
-        "USER": os.environ.get("PSQL_USER", "postgres"),
-        "PASSWORD": os.environ.get("PSQL_PASS", ""),
-        "HOST": os.environ.get("PSQL_HOST", "0.0.0.0"),
-        "PORT": os.environ.get("PSQL_PORT", "5432"),
+        "NAME": env.get("PSQL_NAME", "postgres"),
+        "USER": env.get("PSQL_USER", "postgres"),
+        "PASSWORD": env.get("PSQL_PASS", ""),
+        "HOST": env.get("PSQL_HOST", "0.0.0.0"),
+        "PORT": env.get("PSQL_PORT", "5432"),
     },
 }
 

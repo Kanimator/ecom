@@ -1,16 +1,16 @@
-import os
+from os import environ as env
 from pathlib import Path
 
 ALLOWED_HOSTS = ["crimsonslate.com"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-ECOM_ENCRYPTION_KEY = os.environ.get("ECOM_ENCRYPTION_KEY", "")
+ECOM_ENCRYPTION_KEY = env.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "src.urls"
-SECRET_KEY = os.environ.get("CS_SECRET_KEY", "")
+SECRET_KEY = env.get("CS_SECRET_KEY", "")
 STATIC_URL = "static/"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
@@ -39,11 +39,11 @@ DATABASES = {
     },
     "postgresql": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("PSQL_NAME", "postgres"),
-        "USER": os.environ.get("PSQL_USER", "postgres"),
-        "PASSWORD": os.environ.get("PSQL_PASS", ""),
-        "HOST": os.environ.get("PSQL_HOST", "0.0.0.0"),
-        "PORT": os.environ.get("PSQL_PORT", "5432"),
+        "NAME": env.get("PSQL_NAME", "postgres"),
+        "USER": env.get("PSQL_USER", "postgres"),
+        "PASSWORD": env.get("PSQL_PASS", ""),
+        "HOST": env.get("PSQL_HOST", "0.0.0.0"),
+        "PORT": env.get("PSQL_PORT", "5432"),
     },
 }
 
@@ -80,10 +80,10 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "media/",
-            "access_key": os.environ.get("AWS_ACCESS_KEY", ""),
-            "secret_key": os.environ.get("AWS_SECRET_KEY", ""),
-            "bucket_name": os.environ.get("AWS_BUCKET_NAME", ""),
-            "verify": os.environ.get("CERT_BUNDLE_PATH", False),
+            "access_key": env.get("AWS_ACCESS_KEY", ""),
+            "secret_key": env.get("AWS_SECRET_KEY", ""),
+            "bucket_name": env.get("AWS_BUCKET_NAME", ""),
+            "verify": env.get("CERT_BUNDLE_PATH", False),
         },
     },
 }
