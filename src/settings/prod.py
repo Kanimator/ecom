@@ -1,16 +1,16 @@
 import os
 from pathlib import Path
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["crimsonslate.com"]
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ECOM_ENCRYPTION_KEY = os.environ.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "src.urls"
-SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9"
+SECRET_KEY = os.environ.get("CS_SECRET_KEY", "")
 STATIC_URL = "static/"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
@@ -77,7 +77,14 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
     "bucket": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "location": "media/",
+            "access_key": os.environ.get("AWS_ACCESS_KEY", ""),
+            "secret_key": os.environ.get("AWS_SECRET_KEY", ""),
+            "bucket_name": os.environ.get("AWS_BUCKET_NAME", ""),
+            "verify": os.environ.get("CERT_BUNDLE_PATH", False),
+        },
     },
 }
 
