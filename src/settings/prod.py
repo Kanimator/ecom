@@ -1,18 +1,17 @@
 from os import environ as env
 from pathlib import Path
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["crimsonslate.com"]
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ECOM_ENCRYPTION_KEY = env.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "src.urls"
-SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9"
-STATIC_URL = "/static/"
-TAILWIND_APP_NAME = "theme"
+SECRET_KEY = env.get("CS_SECRET_KEY", "")
+STATIC_URL = "static/"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -72,10 +71,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_htmx",
-    "tailwind",
-    "theme",
-    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -87,12 +82,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.admindocs.middleware.XViewMiddleware",
-    "django_htmx.middleware.HtmxMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
-]
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
 ]
 
 STORAGES = {
@@ -103,7 +92,14 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
     "bucket": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "location": "media/",
+            "access_key": env.get("AWS_ACCESS_KEY", ""),
+            "secret_key": env.get("AWS_SECRET_KEY", ""),
+            "bucket_name": env.get("AWS_BUCKET_NAME", ""),
+            "verify": env.get("CERT_BUNDLE_PATH", False),
+        },
     },
 }
 

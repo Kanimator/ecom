@@ -1,0 +1,11 @@
+<div class="carousel rounded-box w-64">
+    {% for product in products %}
+    <div class="carousel-item w-full">
+        <img
+            src="{{ product.url }}"
+            class="w-full"
+            alt="{{ product.name }} Image"
+        />
+    </div>
+    {% endfor %}
+</div>

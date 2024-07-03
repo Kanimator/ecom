@@ -41,19 +41,34 @@ class SquareTokenModelTests(TestCase):
 
 
 class CartModelTests(TestCase):
-    def test_add_products_to_cart(self):
-        """Succeeds if products are successfully added to a cart."""
-        test_user = User.objects.create_user(
+    def setUp(self):
+        self.test_user = User.objects.create_user(
             username="test_user",
             email="test_user@domain.com",
             password="test_password",
         )
+        self.test_cart = Cart.objects.create(user=test_user)
+
+    def test_add_products_to_cart(self):
+        """Succeeds if products are successfully added to the test cart."""
         test_product_1 = Product.objects.create(name="test_product_1", price=1.00)
         test_product_2 = Product.objects.create(name="test_product_2", price=2.00)
-        test_cart = Cart.objects.create(user=test_user)
 
-        test_cart.add_product(product_id=test_product_1.id, quantity=1)
-        test_cart.add_product(product_id=test_product_2.id, quantity=2)
+        self.test_cart.add_product(product_id=test_product_1.id, quantity=1)
+        self.test_cart.add_product(product_id=test_product_2.id, quantity=2)
 
-        # Fails if cartitem_set wasn't created
-        self.assertIsNot(test_cart.cartitem_set.all(), None)
+        self.assertIsNot(self.test_cart.items.all(), None)
+
+    def test_rm_product_from_cart(self):
+        """Succeeds if products are successfully removed from the test cart."""
+        test_product_1 = Product.objects.create(name="test_product_1", price=1.00)
+        test_product_2 = Product.objects.create(name="test_product_2", price=2.00)
+        self.test_cart.add_product(product_id=test_product_1.id, quantity=1)
+        self.test_cart.add_product(product_id=test_product_2.id, quantity=2)
+
+        self.test_cart.rm_product(product_id=test_product_1.id, quantity=1)
+        self.test_cart.rm_product(product_id=test_product_2.id, quantity=1)
+
+        self.test_cart.save()
+
+        self.assertIsNot(self.test_cart.items.all(), None)

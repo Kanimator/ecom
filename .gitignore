@@ -6,9 +6,7 @@ __pycache__/
 node_modules/
 media/
 package-lock.json
-theme/
-
-main.css
+theme/static/css/dist/styles.css
 
 db.*
 credentials.*
