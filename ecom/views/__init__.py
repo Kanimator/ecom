@@ -1,3 +1,4 @@
-from .cart import *
-from .product import *
-from .shop import *
+from .cart import CartView
+from .home import HomeView
+from .product import ProductView
+from .shop import ShopView

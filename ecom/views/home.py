@@ -3,9 +3,9 @@ from django.shortcuts import render
 from django.views import View
 
 
-class ProductView(View):
-    template_name = "ecom/product.html"
-    partial_template_name = "ecom/partials/product.html"
+class HomeView(View):
+    template_name = "ecom/home.html"
+    partial_template_name = "ecom/partials/home.html"
     context = {"title": "Home"}
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:

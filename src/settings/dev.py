@@ -11,7 +11,7 @@ LANGUAGE_CODE = "en-us"
 MEDIA_URL = "media/"
 ROOT_URLCONF = "src.urls"
 SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9"
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
@@ -89,6 +89,10 @@ MIDDLEWARE = [
     "django.contrib.admindocs.middleware.XViewMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
 ]
 
 STORAGES = {
