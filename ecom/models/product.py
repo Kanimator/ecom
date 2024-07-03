@@ -13,11 +13,13 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    """Image for a Product."""
+    """Image for a :model:`ecom.Product`."""
 
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        "Product", related_name="images", on_delete=models.CASCADE
+    )
     source = models.FileField(storage=storages["bucket"])
 
     @property
@@ -29,11 +31,13 @@ class ProductImage(models.Model):
 
 
 class ProductVideo(models.Model):
-    """Video for a Product."""
+    """Video for a :model:`ecom.Product`."""
 
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        "Product", related_name="videos", on_delete=models.CASCADE
+    )
     source = models.FileField(storage=storages["bucket"])
 
     @property

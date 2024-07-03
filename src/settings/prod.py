@@ -47,6 +47,21 @@ DATABASES = {
     },
 }
 
+ECOM_USERDATA = {
+    "NAME": "Crimson Slate",
+    "ADDRESS": {
+        "STREET": "123 Main St",
+        "CITY": "Houston",
+        "STATE": "TX",
+        "ZIP": "77065",
+    },
+    "PHONE": {
+        "MAIN": "+15555555555",
+        "SUPPORT": "+15555555555",
+        "SALES": "+15555555555",
+    },
+}
+
 INSTALLED_APPS = [
     "ecom.apps.EcomConfig",
     "django.contrib.admin",

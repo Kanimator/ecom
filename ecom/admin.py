@@ -1,9 +1,11 @@
 from django.contrib import admin
 
-from ecom.models import Cart, Order, Product, ProductImage, ProductVideo
+from ecom.models import Order, Product
 
-admin.site.register(Cart)
-admin.site.register(ProductImage)
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ["name", "price"]
+
+
 admin.site.register(Order)
 admin.site.register(Product)
-admin.site.register(ProductVideo)
