@@ -83,6 +83,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.admindocs.middleware.XViewMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 STORAGES = {
