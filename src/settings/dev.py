@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "tailwind",
     "theme",
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.admindocs.middleware.XViewMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    "tailwind",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 STORAGES = {
