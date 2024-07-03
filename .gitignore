@@ -6,6 +6,7 @@ __pycache__/
 node_modules/
 media/
 package-lock.json
+Pipfile.lock
 theme/static/css/dist/styles.css
 
 db.*
