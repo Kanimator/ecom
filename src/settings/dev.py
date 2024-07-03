@@ -12,6 +12,7 @@ MEDIA_URL = "media/"
 ROOT_URLCONF = "src.urls"
 SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9"
 STATIC_URL = "static/"
+TAILWIND_APP_NAME = "theme"
 TIME_ZONE = "America/Chicago"
 USE_I18N = True
 USE_TZ = True
@@ -72,6 +73,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_htmx",
+    "tailwind",
+    "theme",
 ]
 
 MIDDLEWARE = [
@@ -84,6 +87,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.admindocs.middleware.XViewMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    "tailwind",
 ]
 
 STORAGES = {
