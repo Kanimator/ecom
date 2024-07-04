@@ -98,7 +98,7 @@ STORAGES = {
             "access_key": env.get("AWS_ACCESS_KEY", ""),
             "secret_key": env.get("AWS_SECRET_KEY", ""),
             "bucket_name": env.get("AWS_BUCKET_NAME", ""),
-            "verify": env.get("CERT_BUNDLE_PATH", False),
+            "verify": env.get("AWS_CERT_BUNDLE_PATH", False),
         },
     },
 }
