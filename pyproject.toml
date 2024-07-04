@@ -1,8 +1,12 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
 [project]
+version = "1.0.0"
 name = "crimsonslate-ecom"
 description = "crimsonslate Django ecommerce app"
-requires-python = "3.12"
-dynamic = ["version"]
+requires-python = ">= 3.12"
 readme = { file = "README.md", content-type = "text/markdown" }
 
 authors = [
@@ -47,3 +51,7 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
+
+[tool.setuptools.packages.find]
+where = ["ecom"]
+exclude = ["migrations*"]

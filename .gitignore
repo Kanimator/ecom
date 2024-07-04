@@ -8,6 +8,8 @@ media/
 package-lock.json
 Pipfile.lock
 theme/static/css/dist/styles.css
+crimsonslate_ecom.egg-info/
+dist/
 
 db.*
 credentials.*
