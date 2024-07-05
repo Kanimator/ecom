@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from django.views.generic import ListView
 
-from ecom.models import Product
+from ecom.models.product import Product
 
 
 class ProductListView(ListView):

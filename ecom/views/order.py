@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView
 
-from ecom.models import Order
+from ecom.models.order import Order
 
 
 class OrderListView(ListView):

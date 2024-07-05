@@ -1,6 +1,6 @@
 from django.db import models, transaction
 
-from .product import Product
+from ecom.models.product import Product
 
 
 class Cart(models.Model):
@@ -8,21 +8,22 @@ class Cart(models.Model):
 
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    products = models.ManyToManyField("Product", through="CartItem")
 
     def __str__(self) -> str:
         return f"{self.user.username}'s cart"
 
-    def _get_product_by_id(self, product_id: int) -> Product:
+    def get_product_by_id(self, product_id: int) -> Product:
         try:
             return Product.objects.get(id=product_id)
         except Product.DoesNotExist:
             raise ValueError(f"No product with {id = } exists.")
 
-    def _get_cartitem_by_product(self, product: Product) -> "CartItem":
+    def get_cartitem_by_product(self, product: Product) -> "CartItem":
         try:
             return CartItem.objects.get(cart=self, product=product)
         except CartItem.DoesNotExist:
-            raise ValueError(f"No product with {id = } exists in this cart.")
+            raise ValueError(f"No product with id `{product.id}` present in this cart.")
 
     @transaction.atomic
     def create_order(self) -> None:
@@ -30,10 +31,14 @@ class Cart(models.Model):
         if not self.items.exists():
             raise ValueError("Cannot create order without items.")
 
+        return None
+
     @transaction.atomic
     def clear_items(self) -> None:
         """Removes all instances of :model:`ecom.CartItem` from this cart."""
         self.items.all().delete()
+
+        return None
 
     @transaction.atomic
     def add_product(self, product_id: int, quantity: int = 1) -> None:
@@ -41,11 +46,7 @@ class Cart(models.Model):
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
-        try:
-            product = Product.objects.get(id=product_id)
-        except Product.DoesNotExist:
-            raise ValueError(f"No product with {id = }")
-
+        product = self.get_product_by_id(product_id)
         cartitem, created = CartItem.objects.get_or_create(cart=self, product=product)
         if created:
             cartitem.quantity = quantity
@@ -62,8 +63,8 @@ class Cart(models.Model):
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
-        product = self._get_product_by_id(product_id)
-        cartitem = self._get_cartitem_by_product(product=product)
+        product = self.get_product_by_id(product_id)
+        cartitem = self.get_cartitem_by_product(product=product)
 
         if quantity > cartitem.quantity:
             raise ValueError(

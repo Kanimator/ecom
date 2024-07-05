@@ -2,7 +2,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 
-from ecom.models import Cart, Product
+from ecom.models.cart import Cart
+from ecom.models.product import Product
 
 
 class CartView(View):
