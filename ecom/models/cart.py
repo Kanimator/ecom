@@ -82,9 +82,9 @@ class Cart(models.Model):
 class CartItem(models.Model):
     """Intermediate model to represent a product in a :model:`ecom.Cart`."""
 
-    cart = models.ForeignKey("Cart", related_name="items", on_delete=models.CASCADE)
+    cart = models.ForeignKey("Cart", related_name="cartitems", on_delete=models.CASCADE)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self) -> str:
-        return f"{self.quantity} of {self.product.name} in Cart #{self.cart.id}"
+        return f"{self.quantity} of '{self.product.name}'"

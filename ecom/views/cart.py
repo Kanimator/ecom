@@ -1,9 +1,14 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.views import View
+from django.views.generic import ListView
 
 from ecom.models.cart import Cart
-from ecom.models.product import Product
+
+
+class CartListView(ListView):
+    model = Cart
+    context_object_name = "cartitems"
 
 
 class CartView(View):
@@ -15,29 +20,8 @@ class CartView(View):
         return render(request, self.template_name, context=context)
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        context = {"title": "Shop"}
+        context = {"title": "Cart"}
         if request.htmx:
             return render(request, self.template_name, context=context)
         else:
             return render(request, self.template_name, context=context)
-
-
-def clear_cart(request: HttpRequest) -> HttpResponse:
-    cart, _ = Cart.objects.get_or_create(user=request.user)
-    cart.clear_items().save()
-    context = {
-        "title": "Cart",
-        "cart": cart,
-    }
-    return render(request, "ecom/cart.html", context=context)
-
-
-def add_to_cart(request: HttpRequest, product_id: int, quantity: int) -> HttpResponse:
-    product = get_object_or_404(Product, id=product_id)
-    cart, _ = Cart.objects.get_or_create(user=request.user)
-    cart.add_product(product=product, quantity=quantity).save()
-    context = {
-        "title": "Cart",
-        "cart": cart,
-    }
-    return render(request, "ecom/cart.html", context=context)

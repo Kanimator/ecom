@@ -14,6 +14,11 @@ authors = [
     { name = "Constantine Kapatos", email = "kapatos.constantine@gmail.com" },
 ]
 
+[project.urls]
+Homepage = "https://ecom.crimsonslate.com/demo"
+Documentation = "https://github.com/crimsonslate/ecom/wiki"
+Repository = "https://github.com/crimsonslate/ecom"
+
 [tool.ruff]
 exclude = [
     ".git",

@@ -38,7 +38,9 @@ class Product(models.Model):
     slug = models.CharField(
         max_length=64, unique=True, validators=[validate_slug_is_unique]
     )
-    desc = models.TextField(verbose_name="description", max_length=2048)
+    desc = models.TextField(
+        verbose_name="description", max_length=2048, blank=True, default=""
+    )
     date_added = models.DateTimeField(auto_now_add=True)
     date_last_modified = models.DateTimeField(auto_now=True)
     visibility = models.CharField(
