@@ -12,13 +12,18 @@ class Order(models.Model):
         SHIPPING = "SHP", _("Order is being shipped.")
 
     user = models.ForeignKey("auth.User", on_delete=models.PROTECT)
-    created_at = models.DateTimeField(auto_now_add=True)
+    note = models.TextField(max_length=2048, blank=True, default="")
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_last_modified = models.DateTimeField(auto_now=True)
     status = models.CharField(
         max_length=3,
         choices=Status,
         default=Status.CREATED,
     )
     products = models.ManyToManyField("Product", through="OrderItem")
+
+    def __str__(self) -> str:
+        return f"#{self.id} - {self.date_created:%c} - {self.user.username}"
 
 
 class OrderItem(models.Model):

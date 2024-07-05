@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.files.storage import storages
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 
@@ -10,8 +11,21 @@ def validate_positive(value: float) -> None:
         raise ValidationError(_("Price cannot be less than or equal to zero."))
 
 
+def validate_slug_is_unique(value: str) -> None:
+    """Raises ValidationError if the value would create a non-unique slug."""
+    if not Product.objects.get(name=value).exists():
+        if Product.objects.get(slug=slugify(value)).exists():
+            raise ValidationError(
+                _("'%(value)s' would generate a non-unique slug."),
+                params={"value": value},
+            )
+
+
 class Product(models.Model):
     """A purchasable item in the store."""
+
+    class Meta:
+        ordering = ["-name", "-date_last_modified"]
 
     class Visibility(models.TextChoices):
         """Visibility states of a product."""
@@ -21,6 +35,9 @@ class Product(models.Model):
         UNAVAILABLE = "UNA", _("Unavailable")
 
     name = models.CharField(max_length=64)
+    slug = models.CharField(
+        max_length=64, unique=True, validators=[validate_slug_is_unique]
+    )
     desc = models.TextField(verbose_name="description", max_length=2048)
     date_added = models.DateTimeField(auto_now_add=True)
     date_last_modified = models.DateTimeField(auto_now=True)
@@ -36,6 +53,10 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def save(self, *args, **kwargs) -> None:
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class ProductImage(models.Model):
