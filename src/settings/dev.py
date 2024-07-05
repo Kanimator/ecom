@@ -64,18 +64,18 @@ ECOM_USERDATA = {
 }
 
 INSTALLED_APPS = [
-    "ecom.apps.EcomConfig",
     "django.contrib.admin",
     "django.contrib.admindocs",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sessions",
     "django.contrib.staticfiles",
+    "django_browser_reload",
     "django_htmx",
+    "ecom.apps.EcomConfig",
     "tailwind",
     "theme",
-    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
