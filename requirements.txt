@@ -10,7 +10,7 @@ binaryornot==0.4.4
 boto3==1.34.110
 botocore==1.34.110
 build==1.2.1
-certifi==2024.6.2
+certifi==2024.7.4
 cffi==1.16.0
 channels==4.1.0
 channels-redis==4.2.0
