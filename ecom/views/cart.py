@@ -24,7 +24,8 @@ class CartView(View):
 
 def clear_cart(request: HttpRequest) -> HttpResponse:
     cart, _ = Cart.objects.get_or_create(user=request.user)
-    cart.clear_items().save()
+    cart.clear_items()
+    cart.save()
     context = {
         "title": "Cart",
         "cart": cart,
