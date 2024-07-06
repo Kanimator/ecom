@@ -61,6 +61,11 @@ ECOM_USERDATA = {
         "SUPPORT": "+15555555555",
         "SALES": "+15555555555",
     },
+    "LINKS": {
+        "HOMEPAGE": "https://crimsonslate.com/",
+        "REPOSITORY": "https://github.com/crimsonslate/ecom/",
+        "ISSUES": "https://github.com/crimsonslate/ecom/issues/",
+    },
 }
 
 INSTALLED_APPS = [

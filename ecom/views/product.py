@@ -13,6 +13,7 @@ class ProductDetailView(DetailView):
 class ProductListView(ListView):
     model = Product
     context_object_name = "available_products"
+    queryset = Product.objects.filter(visibility__exact="VIS").all()
 
 
 class ProductView(View):

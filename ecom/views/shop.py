@@ -2,8 +2,13 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
+from django.shortcuts import redirect
 
 from ecom.models.product import Product
+
+def get_github_link(request: HttpRequest) -> HttpResponse:
+    repo_link = settings.ECOM_USERDATA.LINKS.get("REPOSITORY", "/")
+    return redirect(repo_link)
 
 
 class ShopView(View):
