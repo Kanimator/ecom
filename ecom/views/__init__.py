@@ -1,6 +1,5 @@
+from .main import *
 from .cart import CartView
-from .home import HomeView
-from .order import OrderListView, OrderView
-from .product import ProductListView, ProductView, ProductDetailView
+from .order import OrderView, OrderListView
+from .product import ProductDetailView, ProductListView
 from .shop import ShopView
-from .main import source_view, contact_view, privacy_view 
