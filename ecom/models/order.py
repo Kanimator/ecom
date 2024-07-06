@@ -31,6 +31,9 @@ class Order(models.Model):
         except Product.DoesNotExist:
             raise ValueError(f"No product with {id = } exists.")
 
+    def update_status(self, new_status: str) -> None:
+        self.update(status=new_status)
+
     @transaction.atomic
     def add_product(self, product_id: int, quantity: int = 1) -> None:
         """Add any quantity of :model:`ecom.Product`s (by id) to this cart."""
