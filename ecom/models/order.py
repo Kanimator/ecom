@@ -29,7 +29,7 @@ class Order(models.Model):
         try:
             return Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            raise ValueError(f"No product with {id = } exists.")
+            raise ValueError(f"No product with {product_id = } exists.")
 
     def update_status(self, new_status: str) -> None:
         self.update(status=new_status)
