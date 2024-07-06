@@ -23,7 +23,7 @@ class Order(models.Model):
         choices=Status,
         default=Status.CREATED,
     )
-    products = models.ManyToManyField(Product, through="OrderItem")
+    products = models.ManyToManyField(Product, through="OrderItem", null=True, blank=True, default=None)
 
     def get_product_by_id(self, product_id: int) -> Product:
         try:
@@ -31,8 +31,9 @@ class Order(models.Model):
         except Product.DoesNotExist:
             raise ValueError(f"No product with {product_id = } exists.")
 
-    def update_status(self, new_status: str) -> None:
-        self.update(status=new_status)
+    @transaction.atomic
+    def update_status(self, new_status: Status) -> None:
+        self.update(status=new_status.value)
         self.save()
 
     @transaction.atomic

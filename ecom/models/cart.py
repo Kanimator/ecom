@@ -8,7 +8,7 @@ class Cart(models.Model):
 
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    products = models.ManyToManyField("Product", through="CartItem")
+    products = models.ManyToManyField("Product", through="CartItem", null=True, blank=True, default=None)
 
     def __str__(self) -> str:
         return f"{self.user.username}'s cart"
