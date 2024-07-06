@@ -1,0 +1,9 @@
+{% extends 'ecom/layout.html' %}
+{% block content %}
+<h1 class="text-3xl text-gray-600 dark:text-white">Cart</h1>
+{% for cartitem in cart.items %}
+    <h2 class="mb-4 text-md text-gray-600 dark:text-white">{{ cartitem.product.name }}</h2>
+    <h3 class="mb-4 text-md text-gray-600 dark:text-white">{{ cartitem.product.price|floatformat:"-2g" }}</h3>
+    <p class="mb-4 text-md text-gray-600 dark:text-white">{{ cartitem.quantity }}</p>
+{% endfor %}
+{% endblock content %}
