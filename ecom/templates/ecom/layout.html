@@ -10,11 +10,13 @@
         <script src="{% static "js/main.js" %}" defer></script>
     </head>
     <body>
-        {% include "ecom/navbar.html" with user=user userdata=userdata only %}
+        <!--Start navbar-->
+        <!--End navbar-->
         <main>
             {% block content %}
             {% endblock content %}
         </main>
-        {% include "ecom/footer.html" with user=user userdata=userdata only %}
+        <!--Start footer-->
+        <!--End footer-->
     </body>
 </html>

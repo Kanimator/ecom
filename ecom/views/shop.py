@@ -6,17 +6,16 @@ from django.shortcuts import redirect
 
 from ecom.models.product import Product
 
-def get_github_link(request: HttpRequest) -> HttpResponse:
-    repo_link = settings.ECOM_USERDATA.LINKS.get("REPOSITORY", "/")
-    return redirect(repo_link)
 
 
 class ShopView(View):
     template_name = "ecom/shop.html"
     partial_template_name = "ecom/partials/shop.html"
+    featured_product = Product.objects.filter(visibility__exact="VIS").last()
     base_context = {
         "title": "Shop",
         "userdata": settings.ECOM_USERDATA,
+        "featured_product": featured_product,
     }
 
     def get(self, request: HttpRequest) -> HttpResponse:

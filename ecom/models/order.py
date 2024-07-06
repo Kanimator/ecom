@@ -23,7 +23,7 @@ class Order(models.Model):
         choices=Status,
         default=Status.CREATED,
     )
-    products = models.ManyToManyField(Product, through="OrderItem", null=True, blank=True, default=None)
+    products = models.ManyToManyField(Product, through="OrderItem")
 
     def get_product_by_id(self, product_id: int) -> Product:
         try:

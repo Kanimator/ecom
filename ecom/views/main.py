@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 
 def source_view(request: HttpRequest) -> HttpResponse:
     if not request.method == "GET":
-        return HttpResponse(status=400)
+        return HttpResponse(status=403)
     repo_link = settings.ECOM_USERDATA.get("LINKS", {}).get("REPOSITORY", "")
     return redirect(repo_link)
 
 def contact_view(request: HttpRequest) -> HttpResponse:
     if not request.method == "GET":
-        return HttpResponse(status=400)
+        return HttpResponse(status=403)
     context = {
         "title": "Contact",
         "userdata": settings.ECOM_USERDATA,
@@ -22,7 +22,7 @@ def contact_view(request: HttpRequest) -> HttpResponse:
 
 def privacy_view(request: HttpRequest) -> HttpResponse:
     if not request.method == "GET":
-        return HttpResponse(status=400)
+        return HttpResponse(status=403)
     context = {
         "title": "Contact",
         "userdata": settings.ECOM_USERDATA,
