@@ -7,9 +7,9 @@ from typing import Any
 from ecom.models.product import Product
 
 class ProductDetailView(DetailView):
-    context_object_name = "product"
+    model = Product
     queryset = Product.objects.filter(visibility__exact="VIS")
 
 class ProductListView(ListView):
-    context_object_name = "products"
+    model = Product
     queryset = Product.objects.filter(visibility__exact="VIS").all()

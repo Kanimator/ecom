@@ -9,25 +9,8 @@ from ecom.models.order import Order
 
 
 class OrderListView(ListView):
+    model = Order
     context_object_name = "orders"
-    queryset = Order.objects.all()
-    template_name = "ecom/order_list.html"
-    partial_template_name = "ecom/partials/order_list.html"
-
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        return HttpResponse(status=403)
-
-    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        return render(request, self.partial_template_name)
 
 class OrderDetailView(DetailView):
-    context_object_name = "order"
-    queryset = Order.objects.all()
-    template_name = "ecom/order_detail.html"
-    partial_template_name = "ecom/partials/order_detail.html"
-
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        return HttpResponse(status=403)
-
-    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        return render(request, self.partial_template_name)
+    model = Order
