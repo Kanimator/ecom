@@ -3,22 +3,31 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 
 from ecom.models.order import Order
 
 
 class OrderListView(ListView):
-    model = Order
+    context_object_name = "orders"
+    queryset = Order.objects.all()
+    template_name = "ecom/order_list.html"
+    partial_template_name = "ecom/partials/order_list.html"
 
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        return HttpResponse(status=403)
 
-class OrderView(View):
-    template_name = "ecom/order.html"
-    partial_template_name = "ecom/partials/order.html"
+    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        return render(request, self.partial_template_name)
 
-    def get(self, request: HttpRequest, order_id: int, *args, **kwargs) -> HttpResponse:
-        order = get_object_or_404(Order, id=order_id)
-        context = {"title": f"Order #{order.id}", "order": order}
-        if not request.htmx:
-            return render(request, self.template_name, context=context)
-        else:
-            return render(request, self.partial_template_name, context=context)
+class OrderDetailView(DetailView):
+    context_object_name = "order"
+    queryset = Order.objects.all()
+    template_name = "ecom/order_detail.html"
+    partial_template_name = "ecom/partials/order_detail.html"
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        return HttpResponse(status=403)
+
+    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        return render(request, self.partial_template_name)
