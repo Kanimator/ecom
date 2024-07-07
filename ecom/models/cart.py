@@ -17,7 +17,7 @@ class Cart(models.Model):
         try:
             return Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            raise ValueError(f"No product with {id = } exists.")
+            raise ValueError(f"No product with {product_id = } exists.")
 
     def get_cartitem_by_product(self, product: Product) -> "CartItem":
         try:
