@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from ecom.models import Cart, Product
 
+# How many lines can we get this file to?
 
 class CartModelTests(TestCase):
     def setUp(self):
@@ -11,7 +12,7 @@ class CartModelTests(TestCase):
             email="test_user@domain.com",
             password="test_password",
         )
-        self.test_cart = Cart.objects.create(user=test_user)
+        self.test_cart = Cart.objects.create(user=self.test_user)
 
     def test_add_products_to_cart(self):
         """Succeeds if products are successfully added to the test cart."""
