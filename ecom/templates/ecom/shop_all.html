@@ -1,0 +1,12 @@
+{% extends "ecom/layout.html" %}
+{% block content %}
+<h2 class="text-3xl text-gray-900 dark:text-white">Search</h2>
+<div class="flex flex-cols">
+{% for cartitem in cartitems %}
+    <div class="mb-4">
+        <h3 class="text-xl text-gray-900 dark:text-white">{{ cartitem.product.name|title }}</h3>
+        <p class="text-xl text-gray-900 dark:text-white">{{ cartitem.quantity }}</p>
+    </div>
+{% endfor %}
+</div>
+{% endblock content %}
