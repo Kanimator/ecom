@@ -1,7 +1,4 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext_lazy as _
-from django.views import View
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
@@ -12,5 +9,7 @@ class OrderListView(ListView):
     model = Order
     context_object_name = "orders"
 
+
 class OrderDetailView(DetailView):
     model = Order
+
