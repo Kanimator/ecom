@@ -60,7 +60,11 @@ class Order(models.Model):
 class OrderItem(models.Model):
     """Intermediate model to represent a product and its quantity in an :model:`ecom.Order`."""
 
-    order = models.ForeignKey("Order", on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = "Order Item"
+        verbose_name_plural = "Order Items"
+
+    order = models.ForeignKey("Order", related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 

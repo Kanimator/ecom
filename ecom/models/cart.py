@@ -82,6 +82,10 @@ class Cart(models.Model):
 class CartItem(models.Model):
     """Intermediate model to represent a product in a :model:`ecom.Cart`."""
 
+    class Meta:
+        verbose_name = "Cart Item"
+        verbose_name_plural = "Cart Items"
+
     cart = models.ForeignKey("Cart", related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)

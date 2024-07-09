@@ -50,6 +50,9 @@ class Product(models.Model):
         max_digits=6, decimal_places=2, validators=[validate_positive]
     )
     is_featured = models.BooleanField(default=False)
+    category = models.ForeignKey(
+        "ProductCategory", on_delete=models.CASCADE, null=True, blank=True, default=None
+    )
 
     def __str__(self) -> str:
         return self.name
@@ -61,6 +64,10 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     """Image for a :model:`ecom.Product`."""
+
+    class Meta:
+        verbose_name = "Product Image"
+        verbose_name_plural = "Product Images"
 
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
@@ -82,6 +89,10 @@ class ProductImage(models.Model):
 class ProductVideo(models.Model):
     """Video for a :model:`ecom.Product`."""
 
+    class Meta:
+        verbose_name = "Product Video"
+        verbose_name_plural = "Product Videos"
+
     name = models.CharField(max_length=64)
     caption = models.CharField(max_length=256)
     product = models.ForeignKey(
@@ -102,11 +113,14 @@ class ProductVideo(models.Model):
 class ProductCategory(models.Model):
     """Intermediate class for organizing :model:`ecom.Product`s."""
 
+    class Meta:
+        verbose_name = "Product Category"
+        verbose_name_plural = "Product Categories"
+
     name = models.CharField(max_length=64)
     cover_image = models.FileField(storage=storages["bucket"], null=True, default=None)
     logo_image = models.FileField(storage=storages["bucket"], null=True, default=None)
-    product = models.ForeignKey(
-        "Product",
-        related_name="categories",
-        on_delete=models.CASCADE,
-    )
+    products = models.ManyToManyField("Product")
+
+    def __str__(self) -> str:
+        return self.name
