@@ -20,6 +20,7 @@
         </thead>
         <tbody>
             {% for order in order_list %}
+                {% include "ecom/partials/order_list.html" with order=order only %}
             {% endfor %}
         </tbody>
     </table>
