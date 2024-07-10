@@ -8,7 +8,10 @@ from django.utils.translation import gettext_lazy as _
 def validate_positive(value: float) -> None:
     """Raises ValidationError if the value is zero or negative."""
     if value <= 0:
-        raise ValidationError(_("Price cannot be less than or equal to zero."))
+        raise ValidationError(
+            _("Price cannot be less than or equal to zero. Price: %(value)s"),
+            params={"value": value},
+        )
 
 
 def validate_slug_is_unique(value: str) -> None:
