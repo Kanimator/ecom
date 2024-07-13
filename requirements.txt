@@ -10,16 +10,18 @@ binaryornot==0.4.4
 boto3==1.34.110
 botocore==1.34.110
 build==1.2.1
-certifi==2024.6.2
+certifi==2024.7.4
 cffi==1.16.0
 channels==4.1.0
 channels-redis==4.2.0
 chardet==5.2.0
 charset-normalizer==3.3.2
 click==8.1.7
+colorama==0.4.6
 constantly==23.10.4
 cookiecutter==2.6.0
 cryptography==42.0.5
+cssbeautifier==1.15.1
 daphne==4.1.2
 decorator==5.1.1
 discord.py==2.3.2
@@ -32,10 +34,14 @@ django-htmx==1.18.0
 django-split-settings==1.3.1
 django-storages==1.14.3
 django-tailwind==3.8.0
+djlint==1.34.1
 docutils==0.21.2
+EditorConfig==0.12.4
 executing==2.0.1
 filelock==3.15.4
 frozenlist==1.4.1
+html-tag-names==0.1.2
+html-void-elements==0.1.0
 hyperlink==21.0.0
 idna==3.7
 importlib_metadata==8.0.0
@@ -48,6 +54,8 @@ jedi==0.19.1
 jeepney==0.8.0
 Jinja2==3.1.4
 jmespath==1.0.1
+jsbeautifier==1.15.1
+json5==0.9.25
 keyring==25.2.1
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
@@ -59,6 +67,7 @@ multidict==6.0.5
 nh3==0.2.17
 packaging==24.1
 parso==0.8.4
+pathspec==0.12.1
 pexpect==4.9.0
 pillow==10.3.0
 pipenv==2024.0.1
@@ -79,6 +88,7 @@ python-slugify==8.0.4
 PyYAML==6.0.1
 readme_renderer==43.0
 redis==5.0.4
+regex==2023.12.25
 requests==2.32.3
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
@@ -91,6 +101,7 @@ six==1.16.0
 sqlparse==0.5.0
 stack-data==0.6.3
 text-unidecode==1.3
+tqdm==4.66.4
 traitlets==5.14.3
 twine==5.1.1
 Twisted==24.3.0

@@ -8,7 +8,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ECOM_ENCRYPTION_KEY = env.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "media/"
 ROOT_URLCONF = "src.urls"
 SECRET_KEY = "django-insecure-9f2wz(#_vn_c6)h&0-7+(o6eqij(i6s@#4sp_rz_5a4%$-*uj9"
 STATIC_URL = "/static/"
@@ -61,6 +62,11 @@ ECOM_USERDATA = {
         "SUPPORT": "+15555555555",
         "SALES": "+15555555555",
     },
+    "LINKS": {
+        "HOMEPAGE": "https://crimsonslate.com/",
+        "REPOSITORY": "https://github.com/crimsonslate/ecom/",
+        "ISSUES": "https://github.com/crimsonslate/ecom/issues/",
+    },
 }
 
 INSTALLED_APPS = [
@@ -104,6 +110,9 @@ STORAGES = {
     },
     "bucket": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "OPTIONS": {
+            "location": "media/"
+        }
     },
 }
 

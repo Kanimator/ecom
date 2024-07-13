@@ -28,7 +28,12 @@ class Order(models.Model):
         try:
             return Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            raise ValueError(f"No product with {id = } exists.")
+            raise ValueError(f"No product with {product_id = } exists.")
+
+    @transaction.atomic
+    def update_status(self, new_status: Status) -> None:
+        self.update(status=new_status.value)
+        self.save()
 
     @transaction.atomic
     def add_product(self, product_id: int, quantity: int = 1) -> None:
@@ -56,11 +61,9 @@ class Order(models.Model):
 class OrderItem(models.Model):
     """Intermediate model to represent a product and its quantity in an :model:`ecom.Order`."""
 
-    order = models.ForeignKey(
-        "Order", related_name="orderitems", on_delete=models.CASCADE
-    )
+    order = models.ForeignKey("Order", related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self) -> str:
-        return f"{self.quantity} of {self.product.name} in Order #{self.order.id}"
+        return f"{self.quantity} of {self.product.name}"

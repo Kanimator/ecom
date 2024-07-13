@@ -1,0 +1,14 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <td class="px-6 py-4">
+        <a href="{% url 'order detail' order.id %}"
+           class="hover:underline hover:underline-offset-auto">{{ order.id }}</a>
+    </td>
+    <td class="px-6 py-4">{{ order.status }}</td>
+    <td class="px-6 py-4">{{ order.user.username }}</td>
+    {% if order.note %}
+        <td class="px-6 py-4">
+            <a href="#" class="hover:underline hover:underline-offset-auto">{{ order.note|truncatewords:8 }}</a>
+        </td>
+    {% endif %}
+</tr>
+

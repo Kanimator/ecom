@@ -7,7 +7,7 @@ class Cart(models.Model):
     """Holds :model:`ecom.Product`s that a user can purchase all at once."""
 
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     products = models.ManyToManyField("Product", through="CartItem")
 
     def __str__(self) -> str:
@@ -17,7 +17,7 @@ class Cart(models.Model):
         try:
             return Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            raise ValueError(f"No product with {id = } exists.")
+            raise ValueError(f"No product with {product_id = } exists.")
 
     def get_cartitem_by_product(self, product: Product) -> "CartItem":
         try:
@@ -82,7 +82,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     """Intermediate model to represent a product in a :model:`ecom.Cart`."""
 
-    cart = models.ForeignKey("Cart", related_name="cartitems", on_delete=models.CASCADE)
+    cart = models.ForeignKey("Cart", related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
