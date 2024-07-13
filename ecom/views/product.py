@@ -1,17 +1,13 @@
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
+from django.views.generic import DetailView, ListView
 
-from ecom.models.product import Product
-
+from ecom.models import Product
 
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = "product"
-    queryset = Product.objects.filter(visibility__exact="VIS")
-
+    queryset = Product.objects.filter(visibility__exact="VIS").all()
 
 class ProductListView(ListView):
     model = Product
-    context_object_name = "products"
-    queryset = Product.objects.filter(visibility__exact="VIS")
-
+    context_object_name = "available_products"
+    queryset = Product.objects.filter(visibility__exact="VIS").all()
