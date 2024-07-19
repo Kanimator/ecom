@@ -17,7 +17,9 @@
         </thead>
         <tbody>
             <div id="cartitems-container">
-            {% include "ecom/partials/cartitem_list.html" with cartitems=cartitems %}
+            {% for cartitem in cartitems %}
+                {% include "ecom/partials/cartitem_list.html" with cartitem=cartitem only %}
+            {% endfor %}
             </div>
         </tbody>
     </table>

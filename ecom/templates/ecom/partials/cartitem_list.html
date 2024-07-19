@@ -1,10 +1,8 @@
-{% for item in cartitems %}
-    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row"
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {{ item.product.name|title }}
-        </th>
-        <td class="px-6 py-4">{{ item.product.price|floatformat:"-2g" }}</td>
-        <td class="px-6 py-4">{{ item.quantity }}</td>
-    </tr>
-{% endfor %}
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row"
+        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {{ item.product.name|title }}
+    </th>
+    <td class="px-6 py-4">{{ item.product.price|floatformat:"-2g" }}</td>
+    <td class="px-6 py-4">{{ item.quantity }}</td>
+</tr>
