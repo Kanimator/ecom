@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for product in products %}
+            {% for product in available_products %}
                 {% include "ecom/partials/product_list.html" with product=product only %}
             {% endfor %}
         </tbody>
