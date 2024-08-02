@@ -6,7 +6,7 @@ from ecom.models.product import Product
 class Cart(models.Model):
     """Holds :model:`ecom.Product`s that a user can purchase all at once."""
 
-    user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     products = models.ManyToManyField("Product", through="CartItem")
 
