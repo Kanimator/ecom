@@ -5,7 +5,6 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-ECOM_ENCRYPTION_KEY = env.get("ECOM_ENCRYPTION_KEY", "")
 INTERNAL_IPS = ["127.0.0.1"]
 LANGUAGE_CODE = "en-us"
 MEDIA_URL = "/media/"
