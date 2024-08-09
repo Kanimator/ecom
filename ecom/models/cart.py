@@ -42,7 +42,7 @@ class Cart(models.Model):
 
     @transaction.atomic
     def add_product(self, product_id: int, quantity: int = 1) -> None:
-        """Add any quantity of :model:`ecom.Product`s (by id) to this cart."""
+        """Adds any quantity of :model:`ecom.Product`s (by id) to this cart."""
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
@@ -59,7 +59,7 @@ class Cart(models.Model):
 
     @transaction.atomic
     def rm_product(self, product_id: int, quantity: int = 1) -> None:
-        """Remove any quantity of :model:`ecom.Product`s (by id) from this cart."""
+        """Removes any quantity of :model:`ecom.Product`s (by id) from this cart."""
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
