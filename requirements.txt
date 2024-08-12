@@ -26,7 +26,7 @@ daphne==4.1.2
 decorator==5.1.1
 discord.py==2.4.0
 distlib==0.3.8
-Django==5.0.7
+Django==5.0.8
 django-browser-reload==1.13.0
 django-discord-py==2023.301.243
 django-extensions==3.2.3
