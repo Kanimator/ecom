@@ -37,7 +37,7 @@ class Cart(models.Model):
     @transaction.atomic
     def clear_items(self) -> None:
         """Removes all instances of :model:`ecom.CartItem` from this cart."""
-        self.items.all().delete()
+        self.items.delete()
         self.save()
         return None
 
