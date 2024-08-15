@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from ecom.models.product import Product
 
 class CartItem(models.Model):
-    """Intermediate model to represent a product in a :model:`ecom.Cart`."""
+    """Represents a product in a :model:`ecom.Cart`."""
 
     cart = models.ForeignKey("Cart", on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
@@ -14,7 +14,7 @@ class CartItem(models.Model):
         return f"{self.quantity} of '{self.product.name}'"
 
 class Cart(models.Model):
-    """Holds :model:`ecom.CartItem`s that a user can purchase all at once."""
+    """Holds :model:`ecom.CartItem`s. User is optional."""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -30,20 +30,20 @@ class Cart(models.Model):
 
     @transaction.atomic
     def create_order(self) -> None:
-        """Creates an :model:`ecom.Order` based on this cart's items list."""
+        """Creates an :model:`ecom.Order` based on this cart's :model:`ecom.CartItem`s."""
 
         return None
 
     @transaction.atomic
     def clear_items(self) -> None:
-        """Removes all instances of :model:`ecom.CartItem` from this cart."""
+        """Clears the cart of :model:`ecom.CartItem`s."""
         self.items.delete()
         self.save()
         return None
 
     @transaction.atomic
     def add_product(self, product_id: int, quantity: int = 1) -> None:
-        """Adds any quantity of :model:`ecom.Product`s (by id) to this cart."""
+        """Adds any quantity of :model:`ecom.Product`s by id. Quantity must be a positive integer."""
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
@@ -59,7 +59,7 @@ class Cart(models.Model):
 
     @transaction.atomic
     def rm_product(self, product_id: int, quantity: int = 1) -> None:
-        """Removes any quantity of :model:`ecom.Product`s (by id) from this cart."""
+        """Removes any quantity of :model:`ecom.Product`s by id. Quantity must be a positive integer."""
         if quantity <= 0:
             raise ValueError("Quantity must be a positive integer.")
 
